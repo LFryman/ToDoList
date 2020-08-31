@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "ToDoList";
+}
+
+<h1>ToDoList</h1>
+
+@model List<ToDoList>
+
+<table class="table table-bordered shadow table-hover table-info">
+
+    <tr class="d-table-row">
+        <th>ID</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Complete</th>
+    </tr>
+
+    @foreach (ToDoList td in Model)
+    {
+        <tr>
+            <td>@td.Id</td>
+            <td>@td.TaskDescription</td>
+            <td>@td.DueDate</td>
+            @if (td.Complete == true)
+            {
+                <td>Your task is complete!</td>
+            }
+            else
+            {
+                <td>Incomplete. Get to work.</td>
+            }
+            <td class="btn-danger">
+                <a href="../User/DeleteTask?id=@td.Id">Delete this Task</a>
+            </td>
+            <td class="btn-success">
+                <a href="../User/MarkComplete?id=@td.Id">Mark Task Complete</a>
+            </td>
+        </tr>
+    }
+
+</table>
